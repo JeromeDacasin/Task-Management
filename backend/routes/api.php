@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,5 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('/login', [AuthController::class, 'login']);
     });
 
-
-});
+    Route::apiResource('tasks', TaskController::class);
+}); 
