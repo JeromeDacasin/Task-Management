@@ -13,12 +13,11 @@ class CheckAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next) 
     {
-        if (!auth()->check() || !auth()->user()->is_admin) {
-            return redirect('/tasks');
+        if (!$request->user() || $request->user()->is_admin !==  1) {
+            abort(403, 'Unauthorized');
         }
-
         return $next($request);
     }
 }

@@ -126,6 +126,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        
+        'taskcleanup' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/task_cleanup.log'),
+            'level' => 'info',
+        ]
 
     ],
 

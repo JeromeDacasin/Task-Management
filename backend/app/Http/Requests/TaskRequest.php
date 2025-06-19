@@ -23,7 +23,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'title'       => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'status'      => 'required|in:pending,completed',
             'priority'    => 'required|in:low,medium,high',
             'order'       => 'nullable|integer|min:0',

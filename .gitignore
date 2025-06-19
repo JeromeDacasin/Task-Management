@@ -1,0 +1,11 @@
+# Node & Laravel dependencies
+/node_modules
+/vendor
+
+# Environment & sensitive files
+.env
+.env.*.local
+
+# Laravel storage (optional but common)
+public/storage
+storage/*.key
