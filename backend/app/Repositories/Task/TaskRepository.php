@@ -9,7 +9,7 @@ class TaskRepository implements TaskRepositoryInterface
 {
     public function __construct(protected Task $task) {}
 
-    public function index(array $filters)
+    public function index(array $filters, int $id)
     {
         $query = $this->task::query();
 
@@ -21,7 +21,7 @@ class TaskRepository implements TaskRepositoryInterface
             $query->priority($filters['priority']);
         }
 
-        return $query->paginate(10);
+        return $query->where('user_id', $id)->paginate(10);
     }
 
     public function create(array $request)

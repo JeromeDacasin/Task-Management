@@ -56,6 +56,27 @@ services:
     networks:
       - laravel_project
 
+  scheduler:
+    build:
+      context: ./docker/scheduler
+    container_name: laravel_scheduler
+    volumes:
+      - ./backend:/var/www
+    depends_on:
+      - backend
+    entrypoint: ["sh", "-c", "while :; do php /var/www/artisan schedule:run >> /dev/null 2>&1; sleep 60; done"]
+    networks:
+      - laravel_project
+
+  redis-cache:
+      image: redis:latest
+      container_name: redis_cache
+      ports:
+          - '127.0.0.1:6380:6379'
+      restart: unless-stopped
+      networks:
+          - laravel_project
+
 volumes:
   db_data:
     

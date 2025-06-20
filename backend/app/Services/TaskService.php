@@ -20,8 +20,8 @@ class TaskService
 
         $cacheKey = 'tasks_all_' . $userId . '_' . md5(json_encode($filters));
 
-        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($filters) {
-            return $this->repository->index($filters);
+        return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($filters, $userId) {
+            return $this->repository->index($filters, $userId);
         }); 
     }
 
